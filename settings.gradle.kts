@@ -1,0 +1,3 @@
+
+rootProject.name = "Koogle-API"
+
