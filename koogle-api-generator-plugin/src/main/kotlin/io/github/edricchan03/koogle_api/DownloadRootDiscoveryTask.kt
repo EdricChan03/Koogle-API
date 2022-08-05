@@ -29,11 +29,12 @@ abstract class DownloadRootDiscoveryTask : DefaultTask() {
     @TaskAction
     fun downloadRootDiscovery() {
         println("Downloading root Google discovery document from $discoveryUrl...")
-        val client = HttpClient(CIO)
-        // TODO
-        runBlocking {
-            println("Writing to $outputFile...")
-            outputFile.writeText(client.get(discoveryUrl).bodyAsText())
+        HttpClient(CIO).use {
+            // TODO: Is this needed?
+            runBlocking {
+                println("Writing to $outputFile...")
+                outputFile.writeText(it.get(discoveryUrl).bodyAsText())
+            }
         }
         println("Done writing.")
     }
