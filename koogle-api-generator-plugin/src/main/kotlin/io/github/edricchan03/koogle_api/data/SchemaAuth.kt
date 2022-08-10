@@ -4,17 +4,23 @@ import kotlinx.serialization.Serializable
 
 // Auth-related data classes
 
+/** Data class to represent [SchemaRes.auth]. */
 @Serializable
 data class SchemaAuth(
-    val oauth2: SchemaAuthOAuth2
+    /** OAuth 2.0 authentication information. */
+    val oauth2: SchemaAuthOAuth2? = null
 )
 
+/** Data class to represent additional metadata of OAuth 2.0 auth in [SchemaAuth.oauth2]. */
 @Serializable
 data class SchemaAuthOAuth2(
-    val scopes: Map<String, SchemaAuthOAuth2Scope>
+    /** Available OAuth 2.0 scopes. */
+    val scopes: Map<String, SchemaAuthOAuth2Scope>? = emptyMap()
 )
 
+/** Data class to represent additional metadata of a scope in [SchemaAuthOAuth2.scopes]. */
 @Serializable
 data class SchemaAuthOAuth2Scope(
-    val description: String
+    /** Description of scope. */
+    val description: String? = null
 )
