@@ -1,8 +1,7 @@
 package io.github.edricchan03.koogle_api
 
 import io.github.edricchan03.koogle_api.Defaults.defaultRootDiscoveryDoc
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
+import io.github.edricchan03.koogle_api.http.client
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.runBlocking
@@ -29,8 +28,8 @@ abstract class DownloadRootDiscoveryTask : DefaultTask() {
     @TaskAction
     fun downloadRootDiscovery() {
         println("Downloading root Google discovery document from $discoveryUrl...")
-        HttpClient(CIO).use {
-            // TODO: Is this needed?
+        client.use {
+            // TODO: Is this runBlocking needed?
             runBlocking {
                 println("Writing to $outputFile...")
                 outputFile.writeText(it.get(discoveryUrl).bodyAsText())
