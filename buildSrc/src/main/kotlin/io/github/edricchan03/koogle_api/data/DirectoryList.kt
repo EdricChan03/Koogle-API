@@ -8,18 +8,18 @@ import kotlinx.serialization.Serializable
  * See https://developers.google.com/discovery/v1/reference/apis/list#response for more info
  */
 @Serializable
-data class RootSchemas(
+data class DirectoryList(
     /** The fixed string `discovery#directoryList`. */
     val kind: String = "discovery#directoryList",
     /** Indicate the version of the Discovery API used to generate this doc. */
     val discoveryVersion: String,
     /** The individual directory entries. One entry per API/version pair. */
-    val items: List<RootSchema>
+    val items: List<DirectoryItem>
 )
 
-/** Data class to represent an individual root schema. */
+/** Data class to represent an individual directory item. */
 @Serializable
-data class RootSchema(
+data class DirectoryItem(
     /** The kind for this response. */
     val kind: String,
     /** The ID of this API. */

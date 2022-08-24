@@ -1,6 +1,6 @@
 package io.github.edricchan03.koogle_api
 
-import io.github.edricchan03.koogle_api.data.SchemaRes
+import io.github.edricchan03.koogle_api.data.DirectoryItem
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
@@ -33,7 +33,7 @@ abstract class KoogleApiGeneratorPluginExtension {
      */
     var discoveryDocsOutputDir: File? = null
 
-    /** Mapping function used to generate the output file name based from the specified [SchemaRes]. */
+    /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
     var outputFileNameMapper: SchemaFileNameMapper? = null
 }
 
