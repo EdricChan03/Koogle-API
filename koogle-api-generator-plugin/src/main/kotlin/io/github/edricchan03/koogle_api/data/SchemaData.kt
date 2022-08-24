@@ -1,6 +1,6 @@
 package io.github.edricchan03.koogle_api.data
 
-import io.github.edricchan03.koogle_api.data.json.JsonSchema
+import io.github.edricchan03.koogle_api.data.json.GoogleJsonSchema
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -81,14 +81,14 @@ data class SchemaItem(
     /** Whether this parameter goes in the query or the path for REST requests. */
     val location: String? = null,
     /** If this is a schema for an object, list the schema for each property of this object. */
-    val properties: Map<String, JsonSchema>? = null,
+    val properties: Map<String, GoogleJsonSchema>? = null,
     /**
      * If this is a schema for an object, this property is the schema for any
      * additional properties with dynamic keys on this object.
      */
-    val additionalProperties: JsonSchema? = null,
+    val additionalProperties: GoogleJsonSchema? = null,
     /** If this is a schema for an array, this property is the schema for each element in the array. */
-    val items: JsonSchema? = null,
+    val items: GoogleJsonSchema? = null,
     /** Additional information about this property. */
     val annotations: SchemaAnnotations? = null
 )
@@ -137,11 +137,11 @@ data class SchemaParameter(
     /** Whether this parameter goes in the query or the path for REST requests. */
     val location: String? = null,
     /** If this is a schema for an object, list the schema for each property of this object. */
-    val properties: Map<String, JsonSchema>? = null,
+    val properties: Map<String, GoogleJsonSchema>? = null,
     /** If this is a schema for an object, this property is the schema for any additional properties with dynamic keys on this object. */
-    val additionalProperties: JsonSchema? = null,
+    val additionalProperties: GoogleJsonSchema? = null,
     /** If this is a schema for an array, this property is the schema for each element in the array. */
-    val items: JsonSchema? = null,
+    val items: GoogleJsonSchema? = null,
     /** Additional information about this property. */
     val annotations: SchemaAnnotations? = null
 )
