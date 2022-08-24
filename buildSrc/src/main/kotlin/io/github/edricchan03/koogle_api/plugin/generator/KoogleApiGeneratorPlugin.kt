@@ -1,6 +1,6 @@
-package io.github.edricchan03.koogle_api
+package io.github.edricchan03.koogle_api.plugin.generator
 
-import io.github.edricchan03.koogle_api.data.DirectoryItem
+import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryItem
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create

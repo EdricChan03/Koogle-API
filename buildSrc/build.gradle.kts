@@ -10,7 +10,7 @@ gradlePlugin {
             id = "io.github.edricchan03.koogle-api.generator"
             displayName = "Koogle API Generator Plugin"
             description = "Plugin to auto-generate Kotlin sources from the Google API"
-            implementationClass = "io.github.edricchan03.koogle_api.KoogleApiGeneratorPlugin"
+            implementationClass = "io.github.edricchan03.koogle_api.plugin.generator.KoogleApiGeneratorPlugin"
         }
     }
 }

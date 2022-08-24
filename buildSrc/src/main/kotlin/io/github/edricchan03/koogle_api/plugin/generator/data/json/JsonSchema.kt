@@ -1,7 +1,9 @@
-package io.github.edricchan03.koogle_api.data.json
+package io.github.edricchan03.koogle_api.plugin.generator.data.json
 
-import io.github.edricchan03.koogle_api.data.json.serializer.*
-import io.github.edricchan03.koogle_api.data.json.serializer.JsonSchemaListWrapSerializer
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.serializer.JsonSchemaFormatSerializer
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.serializer.JsonSchemaListWrapSerializer
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.serializer.JsonSchemaTypeSetWrapSerializer
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.serializer.StringListWrapSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*

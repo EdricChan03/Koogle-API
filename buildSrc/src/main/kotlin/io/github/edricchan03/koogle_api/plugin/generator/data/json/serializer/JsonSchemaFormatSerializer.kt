@@ -1,6 +1,6 @@
-package io.github.edricchan03.koogle_api.data.json.serializer
+package io.github.edricchan03.koogle_api.plugin.generator.data.json.serializer
 
-import io.github.edricchan03.koogle_api.data.json.JsonSchemaFormat
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.JsonSchemaFormat
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor

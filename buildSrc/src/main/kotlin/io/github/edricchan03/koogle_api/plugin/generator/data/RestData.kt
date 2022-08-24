@@ -1,6 +1,6 @@
-package io.github.edricchan03.koogle_api.data
+package io.github.edricchan03.koogle_api.plugin.generator.data
 
-import io.github.edricchan03.koogle_api.data.json.GoogleJsonSchema
+import io.github.edricchan03.koogle_api.plugin.generator.data.json.GoogleJsonSchema
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

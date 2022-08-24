@@ -1,4 +1,4 @@
-package io.github.edricchan03.koogle_api.data
+package io.github.edricchan03.koogle_api.plugin.generator.data
 
 import kotlinx.serialization.Serializable
 

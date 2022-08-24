@@ -1,7 +1,7 @@
-package io.github.edricchan03.koogle_api
+package io.github.edricchan03.koogle_api.plugin.generator
 
-import io.github.edricchan03.koogle_api.Defaults.defaultRootDiscoveryDoc
-import io.github.edricchan03.koogle_api.http.client
+import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryDoc
+import io.github.edricchan03.koogle_api.plugin.generator.http.client
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.runBlocking

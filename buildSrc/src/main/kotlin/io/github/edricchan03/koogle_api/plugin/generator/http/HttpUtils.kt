@@ -1,4 +1,4 @@
-package io.github.edricchan03.koogle_api.http
+package io.github.edricchan03.koogle_api.plugin.generator.http
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*

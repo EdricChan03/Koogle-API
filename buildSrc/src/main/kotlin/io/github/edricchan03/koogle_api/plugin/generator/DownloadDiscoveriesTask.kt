@@ -1,9 +1,9 @@
-package io.github.edricchan03.koogle_api
+package io.github.edricchan03.koogle_api.plugin.generator
 
-import io.github.edricchan03.koogle_api.Defaults.defaultOutputDiscoveryDocsDir
-import io.github.edricchan03.koogle_api.Defaults.defaultRootDiscoveryDoc
-import io.github.edricchan03.koogle_api.data.DirectoryItem
-import io.github.edricchan03.koogle_api.data.DirectoryList
+import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultOutputDiscoveryDocsDir
+import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryDoc
+import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryItem
+import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryList
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream

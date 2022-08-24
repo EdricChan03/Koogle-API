@@ -1,4 +1,4 @@
-package io.github.edricchan03.koogle_api
+package io.github.edricchan03.koogle_api.plugin.generator
 
 import org.gradle.api.Task
 
