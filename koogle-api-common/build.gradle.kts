@@ -1,6 +1,9 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("org.jetbrains.dokka")
 }
 
 group = "io.github.edricchan03"
@@ -43,3 +46,11 @@ kotlin {
     }
 }
 
+tasks.withType<DokkaTaskPartial>().configureEach {
+    dokkaSourceSets.configureEach {
+        includes.from("Module.md")
+
+        // Ktor API docs
+        externalDocumentationLink("https://api.ktor.io/")
+    }
+}
