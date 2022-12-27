@@ -45,7 +45,8 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
     public var httpMethodOverride: String? by stringValue(name = "X-HTTP-Method-Override")
 
     /**
-     * Google API key. See https://cloud.google.com/docs/authentication/api-keys for details.
+     * Google API key.
+     * See [API keys](https://cloud.google.com/docs/authentication/api-keys) for details.
      * ---
      * This variable corresponds to the `X-Goog-Api-Key` HTTP header.
      */

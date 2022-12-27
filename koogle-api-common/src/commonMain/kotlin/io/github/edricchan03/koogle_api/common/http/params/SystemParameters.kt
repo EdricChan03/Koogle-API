@@ -33,7 +33,7 @@ public class SystemParameters(
      */
     public var fields: String? by stringValue()
 
-    /** Google API key. See https://cloud.google.com/docs/authentication/api-keys for details. */
+    /** Google API key. See [API keys](https://cloud.google.com/docs/authentication/api-keys) for details. */
     public var key: String? by stringValue()
 
     /** Pretty-print JSON response. Supported values are `true` (default), `false`. */
