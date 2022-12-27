@@ -2,7 +2,6 @@ package io.github.edricchan03.koogle_api.common.http.params
 
 import io.github.edricchan03.koogle_api.common.http.headers.contentTypeValue
 import io.github.edricchan03.koogle_api.common.http.values.booleanValue
-import io.github.edricchan03.koogle_api.common.http.values.delegate.single.single
 import io.github.edricchan03.koogle_api.common.http.values.enumValue
 import io.github.edricchan03.koogle_api.common.http.values.stringValue
 import io.ktor.http.*
@@ -17,28 +16,28 @@ public class SystemParameters(
     parametersBuilder: ParametersBuilder
 ) : Parameters(parametersBuilder) {
     /** Alternative response format. Supported values are json (default), media, proto. */
-    public var alt: Alt? by enumValue(toEnum = { Alt.getEnumByValue(it) }).single()
+    public var alt: Alt? by enumValue(toEnum = { Alt.getEnumByValue(it) })
 
     /** JSON error format. Supported values are 1, 2 (default). */
-    public var xgafv: Xgafv? by enumValue(name = "\$.xgafv", toEnum = { Xgafv.getEnumByValue(it) }).single()
+    public var xgafv: Xgafv? by enumValue(name = "\$.xgafv", toEnum = { Xgafv.getEnumByValue(it) })
 
     /** JSONP callback parameter. */
-    public var callback: String? by stringValue().single()
+    public var callback: String? by stringValue()
 
     /** HTTP Content-Type request header override. */
-    public var contentType: ContentType? by contentTypeValue(name = "\$ct").single()
+    public var contentType: ContentType? by contentTypeValue(name = "\$ct")
 
     /**
      * `FieldMask` used for response filtering.
      * If empty, all fields should be returned unless documented otherwise.
      */
-    public var fields: String? by stringValue().single()
+    public var fields: String? by stringValue()
 
     /** Google API key. See https://cloud.google.com/docs/authentication/api-keys for details. */
-    public var key: String? by stringValue().single()
+    public var key: String? by stringValue()
 
     /** Pretty-print JSON response. Supported values are `true` (default), `false`. */
-    public var prettyPrint: Boolean? by booleanValue().single()
+    public var prettyPrint: Boolean? by booleanValue()
 
     /**
      * A pseudo user identifier for charging per-user quotas.
@@ -50,13 +49,13 @@ public class SystemParameters(
      * When specified, a valid API key with service restrictions must be used to identify
      * the quota project. Otherwise, this parameter is ignored.
      */
-    public var quotaUser: String? by stringValue().single()
+    public var quotaUser: String? by stringValue()
 
     /** Force to output proto default values for JSON responses. */
-    public var outputDefaults: String? by stringValue().single()
+    public var outputDefaults: String? by stringValue()
 
     /** Unique query parameter to disable request caching. */
-    public var unique: String? by stringValue().single()
+    public var unique: String? by stringValue()
 
     public enum class Alt(public val value: String) {
         /** Responses with Content-Type of application/json */

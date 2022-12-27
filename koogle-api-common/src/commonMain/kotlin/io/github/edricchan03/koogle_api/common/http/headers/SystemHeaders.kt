@@ -1,6 +1,5 @@
 package io.github.edricchan03.koogle_api.common.http.headers
 
-import io.github.edricchan03.koogle_api.common.http.values.delegate.single.single
 import io.github.edricchan03.koogle_api.common.http.values.floatValue
 import io.github.edricchan03.koogle_api.common.http.values.stringValue
 import io.ktor.client.request.*
@@ -19,14 +18,14 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `Authorization` HTTP header.
      */
-    public var authorization: String? by stringValue(name = "Authorization").single()
+    public var authorization: String? by stringValue(name = "Authorization")
 
     /**
      * HTTP Content-Type request header override.
      * ---
      * This variable corresponds to the `Content-Type` HTTP header.
      */
-    public var contentType: ContentType? by contentTypeValue(name = "Content-Type").single()
+    public var contentType: ContentType? by contentTypeValue(name = "Content-Type")
 
     /**
      * [`FieldMask`](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto)
@@ -35,7 +34,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Goog-FieldMask` HTTP header.
      */
-    public var fields: String? by stringValue(name = "X-Goog-FieldMask").single()
+    public var fields: String? by stringValue(name = "X-Goog-FieldMask")
 
     /**
      * The intended HTTP method for the request.
@@ -43,14 +42,14 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-HTTP-Method-Override` HTTP header.
      */
-    public var httpMethodOverride: String? by stringValue(name = "X-HTTP-Method-Override").single()
+    public var httpMethodOverride: String? by stringValue(name = "X-HTTP-Method-Override")
 
     /**
      * Google API key. See https://cloud.google.com/docs/authentication/api-keys for details.
      * ---
      * This variable corresponds to the `X-Goog-Api-Key` HTTP header.
      */
-    public var apiKey: String? by stringValue(name = "X-Goog-Api-Key").single()
+    public var apiKey: String? by stringValue(name = "X-Goog-Api-Key")
 
     /**
      * A pseudo user identifier for charging per-user quotas.
@@ -64,7 +63,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Goog-Quota-User` HTTP header.
      */
-    public var quotaUser: String? by stringValue(name = "X-Goog-Quota-User").single()
+    public var quotaUser: String? by stringValue(name = "X-Goog-Quota-User")
 
     /**
      * API client identification.
@@ -77,7 +76,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Goog-Api-Client` HTTP header.
      */
-    public var apiClient: String? by stringValue(name = "X-Goog-Api-Client").single()
+    public var apiClient: String? by stringValue(name = "X-Goog-Api-Client")
 
     /**
      * Contains a reason for making the request, which is intended to be recorded in
@@ -86,7 +85,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Goog-Request-Reason` HTTP header.
      */
-    public var requestReason: String? by stringValue(name = "X-Goog-Request-Reason").single()
+    public var requestReason: String? by stringValue(name = "X-Goog-Request-Reason")
 
     /**
      * A caller-specified project for quota and billing purposes.
@@ -94,7 +93,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Goog-User-Project` HTTP header.
      */
-    public var userProject: String? by stringValue(name = "X-Goog-User-Project").single()
+    public var userProject: String? by stringValue(name = "X-Goog-User-Project")
 
     /**
      * Timeout (in seconds, float value) for the server to finish processing the request.
@@ -102,7 +101,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `X-Server-Timeout` HTTP header.
      */
-    public var serverTimeout: Float? by floatValue(name = "X-Server-Timeout").single()
+    public var serverTimeout: Float? by floatValue(name = "X-Server-Timeout")
 
     /**
      * Passing additional parameters for gRPC requests in URL query format.
@@ -110,7 +109,7 @@ public class SystemHeaders(headersBuilder: HeadersBuilder) : Headers(headersBuil
      * ---
      * This variable corresponds to the `x-goog-request-params` HTTP header.
      */
-    public var requestParams: String? by stringValue(name = "x-goog-request-params").single()
+    public var requestParams: String? by stringValue(name = "x-goog-request-params")
 }
 
 /** Sets the [SystemHeaders] on the [HttpRequestBuilder] receiver. */
