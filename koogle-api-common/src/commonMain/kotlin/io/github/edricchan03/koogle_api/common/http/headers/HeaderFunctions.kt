@@ -9,7 +9,7 @@ import io.ktor.util.*
 
 /**
  * Creates an optional `Content-Type` header of type `List<ContentType>` with the given
- * [name] in this [Headers] instance.
+ * [name] in this [KoogleHeadersBuilder] instance.
  *
  * If no [name] is provided, the property's name will be used.
  */
@@ -19,7 +19,7 @@ public fun StringValuesBuilder.contentTypeValues(
 
 /**
  * Creates an optional `Content-Type` header of type [ContentType] with the given
- * [name] in this [Headers] instance.
+ * [name] in this [KoogleHeadersBuilder] instance.
  *
  * If no [name] is provided, the property's name will be used.
  */

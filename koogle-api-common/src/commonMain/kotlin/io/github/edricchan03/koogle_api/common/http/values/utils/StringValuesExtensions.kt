@@ -1,6 +1,6 @@
 package io.github.edricchan03.koogle_api.common.http.values.utils
 
-import io.github.edricchan03.koogle_api.common.http.params.Parameters
+import io.github.edricchan03.koogle_api.common.http.params.KoogleParametersBuilder
 import io.ktor.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -85,7 +85,10 @@ public fun StringValuesBuilder.valueList(
  * If both the data being set and [defaultValue] are `null`, the string-value
  * will be removed.
  */
-public fun StringValuesBuilder.value(name: String? = null, defaultValue: String? = null): ReadWriteProperty<Parameters, String?> = object :
+public fun StringValuesBuilder.value(
+    name: String? = null,
+    defaultValue: String? = null
+): ReadWriteProperty<KoogleParametersBuilder, String?> = object :
     ReadWriteProperty<StringValuesBuilder, String?> {
     fun getName(property: KProperty<*>) = name ?: property.name
     override fun getValue(thisRef: StringValuesBuilder, property: KProperty<*>): String? = thisRef[getName(property)]

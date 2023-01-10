@@ -5,7 +5,11 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.util.*
 
-public abstract class Parameters(private val parametersBuilder: ParametersBuilder) :
+/**
+ * Top-level class that all query parameter builders should extend from.
+ * @param parametersBuilder The Ktor header builder to extend from.
+ */
+public abstract class KoogleParametersBuilder(private val parametersBuilder: ParametersBuilder) :
     ParametersBuilder by parametersBuilder {
     /** Applies the parameters to the specified [urlBuilder]. */
     public fun appendToBuilder(urlBuilder: URLBuilder) {

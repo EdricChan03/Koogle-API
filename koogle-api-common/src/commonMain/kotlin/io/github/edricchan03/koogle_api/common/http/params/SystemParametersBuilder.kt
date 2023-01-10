@@ -12,9 +12,9 @@ import io.ktor.http.*
  * For more information, see the
  * [system parameters documentation](https://cloud.google.com/apis/docs/system-parameters).
  */
-public class SystemParameters(
+public class SystemParametersBuilder(
     parametersBuilder: ParametersBuilder
-) : Parameters(parametersBuilder) {
+) : KoogleParametersBuilder(parametersBuilder) {
     /** Alternative response format. Supported values are json (default), media, proto. */
     public var alt: Alt? by enumValue(toEnum = { Alt.getEnumByValue(it) })
 
@@ -87,7 +87,7 @@ public class SystemParameters(
     }
 }
 
-/** Sets the [SystemParameters] on the [URLBuilder] receiver. */
-public fun URLBuilder.systemParameters(paramsInit: SystemParameters.() -> Unit) {
-    SystemParameters(parameters).apply(paramsInit).appendToBuilder(this)
+/** Sets the [SystemParametersBuilder] on the [URLBuilder] receiver. */
+public fun URLBuilder.systemParameters(paramsInit: SystemParametersBuilder.() -> Unit) {
+    SystemParametersBuilder(parameters).apply(paramsInit).appendToBuilder(this)
 }

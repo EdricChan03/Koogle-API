@@ -1,7 +1,7 @@
 package io.github.edricchan03.koogle_api.common
 
-import io.github.edricchan03.koogle_api.common.http.headers.SystemHeaders
-import io.github.edricchan03.koogle_api.common.http.params.SystemParameters
+import io.github.edricchan03.koogle_api.common.http.headers.SystemHeadersBuilder
+import io.github.edricchan03.koogle_api.common.http.params.SystemParametersBuilder
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
@@ -19,31 +19,38 @@ public abstract class KoogleHttpClient(
     /**
      * The [HttpClient] to use in all HTTP requests.
      *
-     * By default, the system query parameters and HTTP headers are applied to this client.
+     * By default, the [system query parameters][systemParamsBuilder]
+     * and [HTTP headers][systemHeadersBuilder] are applied to this client.
      */
     public val httpClient: HttpClient by lazy {
         HttpClient(engine) {
             config()
             defaultRequest {
-                systemQueryParameters.appendToBuilder(this)
-                systemHeaders.appendToBuilder(this)
+                systemParamsBuilder.appendToBuilder(this)
+                systemHeadersBuilder.appendToBuilder(this)
             }
         }
     }
 
-    /** System query parameters to be used. */
-    public var systemQueryParameters: SystemParameters = SystemParameters(ParametersBuilder())
+    /** [System query parameters][SystemParametersBuilder] to be used. */
+    private val systemParamsBuilder: SystemParametersBuilder = SystemParametersBuilder(ParametersBuilder())
 
-    /** Sets the system query parameters to be used. */
-    public fun systemQueryParameters(config: SystemParameters.() -> Unit) {
-        systemQueryParameters.apply(config)
+    /** Sets the [system query parameters][SystemParametersBuilder] to be used. */
+    public fun systemQueryParameters(config: SystemParametersBuilder.() -> Unit) {
+        systemParamsBuilder.apply(config)
     }
 
-    /** System HTTP headers to be used. */
-    public var systemHeaders: SystemHeaders = SystemHeaders(HeadersBuilder())
+    /** Retrieves the [system query parameters][SystemParametersBuilder]. */
+    public val systemParameters: Parameters = systemParamsBuilder.build()
 
-    /** Sets the system HTTP headers to be used. */
-    public fun systemHttpHeaders(config: SystemHeaders.() -> Unit) {
-        systemHeaders.apply(config)
+    /** [System HTTP headers][SystemHeadersBuilder] to be used. */
+    private val systemHeadersBuilder: SystemHeadersBuilder = SystemHeadersBuilder(HeadersBuilder())
+
+    /** Sets the [system HTTP headers][SystemHeadersBuilder] to be used. */
+    public fun systemHeaders(config: SystemHeadersBuilder.() -> Unit) {
+        systemHeadersBuilder.apply(config)
     }
+
+    /** Retrieves the [system HTTP headers][SystemHeadersBuilder]. */
+    public val systemHeaders: Headers = systemHeadersBuilder.build()
 }
