@@ -8,13 +8,19 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import org.gradle.api.DefaultTask
+import org.gradle.api.Transformer
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 
-typealias SchemaFileNameMapper = (DirectoryItem) -> String
+/**
+ * [Transformer] used to transform a [DirectoryItem] to its
+ * [file name][String] representation.
+ */
+typealias SchemaFileNameMapper = Transformer<String, DirectoryItem>
 
 /**
  * Task to download all Google discovery documents from the specified root discovery document
