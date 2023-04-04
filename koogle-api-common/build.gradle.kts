@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("multiplatform")
@@ -13,7 +14,9 @@ kotlin {
     explicitApiWarning()
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
+            compilerOptions.configure {
+                jvmTarget.set(JvmTarget.JVM_1_8)
+            }
         }
         withJava()
         testRuns["test"].executionTask.configure {
@@ -23,7 +26,9 @@ kotlin {
     js(BOTH) {
         browser {
             commonWebpackConfig {
-                cssSupport.enabled = true
+                cssSupport {
+                    enabled.set(true)
+                }
             }
         }
     }
