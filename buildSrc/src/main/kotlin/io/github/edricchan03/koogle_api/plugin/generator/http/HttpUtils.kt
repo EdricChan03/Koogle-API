@@ -11,4 +11,5 @@ val client get() = HttpClient(CIO) {
     install(ContentNegotiation) {
         json()
     }
+    expectSuccess = true
 }
