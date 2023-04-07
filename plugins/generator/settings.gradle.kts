@@ -1,5 +1,4 @@
-rootProject.name = "koogle-api"
-
+@file:Suppress("UnstableApiUsage")
 
 pluginManagement {
     repositories {
@@ -7,8 +6,6 @@ pluginManagement {
         google()
         mavenCentral()
     }
-
-    includeBuild("plugins/generator")
 }
 
 dependencyResolutionManagement {
@@ -16,8 +13,9 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            from(files("../../gradle/libs.versions.toml"))
+        }
+    }
 }
-
-include(
-    ":koogle-api-common",
-)
