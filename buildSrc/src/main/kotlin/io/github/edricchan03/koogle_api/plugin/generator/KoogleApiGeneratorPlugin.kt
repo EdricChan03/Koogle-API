@@ -54,17 +54,18 @@ class KoogleApiGeneratorPlugin : Plugin<Project> {
             val downloadRootDiscovery by registering(DownloadRootDiscoveryTask::class) {
                 description = "Downloads the root Google API discovery document and saves it to disk"
                 group = "koogleApi"
-                discoveryUrl.set(extension.discoveryUrl)
-                outputFile.set(extension.rootDiscoveryDocOutputFile)
+                discoveryUrl.setIfPresent(extension.discoveryUrl)
+                outputFile.setIfPresent(extension.rootDiscoveryDocOutputFile)
             }
+
             val downloadDiscoveries by registering(DownloadDiscoveriesTask::class) {
                 dependsOn(downloadRootDiscovery)
                 description = "Downloads all Google API discovery documents from the root document " +
                     "and saves them to disk"
                 group = "koogleApi"
-                rootDiscoveryDocFile.set(extension.rootDiscoveryDocOutputFile)
-                outputDir.set(extension.discoveryDocsOutputDir)
-                outputFileNameMapper.set(extension.outputFileNameMapper)
+                rootDiscoveryDocFile.setIfPresent(extension.rootDiscoveryDocOutputFile)
+                outputDir.setIfPresent(extension.discoveryDocsOutputDir)
+                outputFileNameMapper.setIfPresent(extension.outputFileNameMapper)
             }
         }
     }
