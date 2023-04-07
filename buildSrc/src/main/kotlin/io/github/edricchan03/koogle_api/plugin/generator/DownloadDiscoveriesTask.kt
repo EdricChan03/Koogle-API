@@ -5,6 +5,7 @@ import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultOutputF
 import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryDoc
 import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryItem
 import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryList
+import io.github.edricchan03.koogle_api.plugin.generator.work.DownloadDiscovery
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
@@ -17,6 +18,8 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import org.gradle.workers.WorkerExecutor
+import javax.inject.Inject
 
 /**
  * [Transformer] used to transform a [DirectoryItem] to its
@@ -44,6 +47,9 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
     fun outputFileNameMapper(mapper: SchemaFileNameMapper) = outputFileNameMapper.set(mapper)
 
+    @get:Inject
+    abstract val workerExecutor: WorkerExecutor
+
     init {
         rootDiscoveryDocFile.convention(defaultRootDiscoveryDoc)
         outputDir.convention(defaultOutputDiscoveryDocsDir)
@@ -57,6 +63,16 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
         val discoveries = Json.decodeFromStream<DirectoryList>(
             rootDiscoveryDocFile.get().asFile.inputStream()
         )
-        println(discoveries.items.size)
+
+        val workQueue = workerExecutor.noIsolation()
+        discoveries.items.forEach {
+            workQueue.submit<DownloadDiscovery, _> {
+                schemaUrl.set(it.discoveryRestUrl)
+                schemaId.set(it.id)
+                outputFile.set(
+                    outputDir.get().asFile.resolve(outputFileNameMapper.get().transform(it))
+                )
+            }
+        }
     }
 }
