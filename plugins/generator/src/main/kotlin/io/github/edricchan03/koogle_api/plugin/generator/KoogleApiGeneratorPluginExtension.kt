@@ -6,6 +6,9 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import java.net.URL
 
+/**
+ * Configuration options for the [Koogle API generator plugin][KoogleApiGeneratorPlugin].
+ */
 public abstract class KoogleApiGeneratorPluginExtension {
     /** The discovery URL to use. */
     public abstract val discoveryUrl: Property<URL>

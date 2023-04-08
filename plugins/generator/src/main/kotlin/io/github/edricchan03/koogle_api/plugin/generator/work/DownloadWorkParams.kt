@@ -5,6 +5,9 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.workers.WorkParameters
 
+/**
+ * Work parameters for the [DownloadDiscovery] work action.
+ */
 public interface DownloadWorkParams : WorkParameters {
     /** The URL of the schema to download. */
     public val schemaUrl: Property<String>

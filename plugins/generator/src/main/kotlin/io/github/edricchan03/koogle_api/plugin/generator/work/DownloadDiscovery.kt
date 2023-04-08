@@ -11,6 +11,9 @@ import kotlinx.serialization.json.encodeToStream
 import kotlinx.serialization.json.jsonObject
 import org.gradle.workers.WorkAction
 
+/**
+ * Work action to download a discovery given the [work parameters][DownloadWorkParams].
+ */
 public abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
     private val json = Json { prettyPrint = true }
 
