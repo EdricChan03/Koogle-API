@@ -1,6 +1,5 @@
 package io.github.edricchan03.koogle_api.plugin.generator.work
 
-import io.github.edricchan03.koogle_api.plugin.generator.InternalPluginApi
 import io.github.edricchan03.koogle_api.plugin.generator.data.json.sortKeys
 import io.github.edricchan03.koogle_api.plugin.generator.http.createClient
 import io.ktor.client.request.*
@@ -15,7 +14,7 @@ import org.gradle.workers.WorkAction
 abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
     private val json = Json { prettyPrint = true }
 
-    @OptIn(ExperimentalSerializationApi::class, InternalPluginApi::class)
+    @OptIn(ExperimentalSerializationApi::class)
     override fun execute() {
         val (schemaUrl, schemaId, outputFile) = parameters
         println("Downloading ${schemaId}...")
