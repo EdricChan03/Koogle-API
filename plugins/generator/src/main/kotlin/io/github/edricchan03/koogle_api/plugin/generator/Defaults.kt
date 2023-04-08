@@ -17,6 +17,6 @@ public object Defaults {
     public val Task.defaultRootDiscoveryDoc: Provider<RegularFile> get() = defaultOutputDiscoveryDocsDir.map { it.file("index.json") }
 
     /** @see KoogleApiGeneratorPluginExtension.outputFileNameMapper */
-    public val Task.defaultOutputFileNameMapper: SchemaFileNameMapper
-        get() = SchemaFileNameMapper { "${it.id.replace(":", "-")}.json" }
+    public val defaultOutputFileNameMapper: SchemaFileNameMapper =
+        SchemaFileNameMapper { "${it.id.replace(":", "-")}.json" }
 }
