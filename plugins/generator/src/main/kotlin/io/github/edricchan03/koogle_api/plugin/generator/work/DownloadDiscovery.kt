@@ -2,7 +2,7 @@ package io.github.edricchan03.koogle_api.plugin.generator.work
 
 import io.github.edricchan03.koogle_api.plugin.generator.InternalPluginApi
 import io.github.edricchan03.koogle_api.plugin.generator.data.json.sortKeys
-import io.github.edricchan03.koogle_api.plugin.generator.http.client
+import io.github.edricchan03.koogle_api.plugin.generator.http.createClient
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.runBlocking
@@ -20,7 +20,7 @@ abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
         val (schemaUrl, schemaId, outputFile) = parameters
         println("Downloading ${schemaId}...")
         // TODO: Is this runBlocking needed?
-        client.use {
+        createClient().use {
             try {
                 runBlocking {
 //                    val data = it.get(parameters.schemaUrl).body<RestDescription>()
@@ -31,10 +31,10 @@ abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
                     val bodyJson = json.parseToJsonElement(bodyText).jsonObject
                     json.encodeToStream(bodyJson.sortKeys(), outputFile.asFile.outputStream())
 
-                    println("Done downloading ${schemaId}")
+                    println("Done downloading $schemaId")
                 }
             } catch (e: Exception) {
-                println("Error downloading: ${schemaUrl} $e")
+                println("Error downloading: $schemaUrl $e")
                 e.printStackTrace()
                 throw RuntimeException(e)
             }
