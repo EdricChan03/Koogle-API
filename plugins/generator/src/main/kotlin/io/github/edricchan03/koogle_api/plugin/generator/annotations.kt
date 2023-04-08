@@ -10,4 +10,5 @@ package io.github.edricchan03.koogle_api.plugin.generator
         "APIs annotated with this opt-in may also change at any point with no " +
         "guarantees in backwards-compatibility."
 )
+@MustBeDocumented
 annotation class InternalPluginApi
