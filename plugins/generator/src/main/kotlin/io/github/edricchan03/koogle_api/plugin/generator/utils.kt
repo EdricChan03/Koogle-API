@@ -35,6 +35,6 @@ internal fun <T> KMutableProperty0<T>.setIfPresent(other: Provider<out T?>) {
  * Any errors will be thrown from [WorkQueue.await] or from the surrounding task action
  * if [WorkQueue.await] is not used.
  */
-inline fun <reified C : WorkAction<T>, T : WorkParameters> WorkQueue.submit(
+internal inline fun <reified C : WorkAction<T>, T : WorkParameters> WorkQueue.submit(
     paramsAction: Action<in T>
 ) = submit(C::class.java, paramsAction)
