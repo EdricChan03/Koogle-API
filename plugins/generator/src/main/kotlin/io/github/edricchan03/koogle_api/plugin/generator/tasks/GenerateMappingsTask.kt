@@ -1,4 +1,4 @@
-package io.github.edricchan03.koogle_api.plugin.generator
+package io.github.edricchan03.koogle_api.plugin.generator.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty

@@ -1,10 +1,11 @@
-package io.github.edricchan03.koogle_api.plugin.generator
+package io.github.edricchan03.koogle_api.plugin.generator.tasks
 
 import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultOutputDiscoveryDocsDir
 import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultOutputFileNameMapper
 import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryDoc
 import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryItem
 import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryList
+import io.github.edricchan03.koogle_api.plugin.generator.submit
 import io.github.edricchan03.koogle_api.plugin.generator.work.DownloadDiscovery
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json

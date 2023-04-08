@@ -1,7 +1,7 @@
-package io.github.edricchan03.koogle_api.plugin.generator
+package io.github.edricchan03.koogle_api.plugin.generator.tasks
 
+import io.github.edricchan03.koogle_api.plugin.generator.Defaults
 import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryDoc
-import io.github.edricchan03.koogle_api.plugin.generator.Defaults.defaultRootDiscoveryUrl
 import io.github.edricchan03.koogle_api.plugin.generator.http.client
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -28,7 +28,7 @@ abstract class DownloadRootDiscoveryTask : DefaultTask() {
     abstract val outputFile: RegularFileProperty
 
     init {
-        discoveryUrl.convention(URL(defaultRootDiscoveryUrl))
+        discoveryUrl.convention(URL(Defaults.defaultRootDiscoveryUrl))
         outputFile.convention(defaultRootDiscoveryDoc)
     }
 

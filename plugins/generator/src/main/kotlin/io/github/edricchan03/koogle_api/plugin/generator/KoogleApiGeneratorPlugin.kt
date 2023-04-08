@@ -1,6 +1,8 @@
 package io.github.edricchan03.koogle_api.plugin.generator
 
 import io.github.edricchan03.koogle_api.plugin.generator.data.DirectoryItem
+import io.github.edricchan03.koogle_api.plugin.generator.tasks.DownloadDiscoveriesTask
+import io.github.edricchan03.koogle_api.plugin.generator.tasks.DownloadRootDiscoveryTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
