@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * API.
  */
 @Serializable
-data class GoogleJsonSchema(
+public data class GoogleJsonSchema(
     /** Unique identifier for this schema. */
     val id: String? = null,
     /** A description of this object. */
@@ -76,29 +76,30 @@ data class GoogleJsonSchema(
     val variant: Variant? = null
 ) {
     /** Gets the list of enums and their descriptions as a list of [Pair]s. */
-    val enumsAsPairs = enum?.mapIndexed { i, item -> item to enumDescriptions?.getOrNull(i) }
+    val enumsAsPairs: List<Pair<String, String?>>? =
+        enum?.mapIndexed { i, item -> item to enumDescriptions?.getOrNull(i) }
 
     /**
      * Gets the required annotations.
      * @see Annotations.required
      */
-    val requiredAnnotations = annotations?.required
+    val requiredAnnotations: List<String>? = annotations?.required
 
     @Serializable
-    data class Annotations(
+    public data class Annotations(
         /** A list of methods for which this property is required on requests. */
         val required: List<String>? = null
     )
 
     @Serializable
-    data class Variant(
+    public data class Variant(
         /** The map of discriminant value to schema to use for parsing. */
         val map: List<Map>? = null,
         /** The name of the type discriminant property. */
         val discriminant: String? = null
     ) {
         @Serializable
-        data class Map(
+        public data class Map(
             @SerialName("type_value")
             val typeValue: String? = null,
             @SerialName("\$ref")

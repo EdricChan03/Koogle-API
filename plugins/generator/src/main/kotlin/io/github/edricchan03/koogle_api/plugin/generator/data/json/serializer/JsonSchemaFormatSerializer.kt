@@ -4,14 +4,18 @@ import io.github.edricchan03.koogle_api.plugin.generator.data.json.JsonSchemaFor
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /** Serializer to serialize/deserialize a [JsonSchemaFormat]. */
-object JsonSchemaFormatSerializer : KSerializer<JsonSchemaFormat> {
-    override val descriptor = PrimitiveSerialDescriptor("JsonSchemaFormat", PrimitiveKind.STRING)
+public object JsonSchemaFormatSerializer : KSerializer<JsonSchemaFormat> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(
+        "JsonSchemaFormat", PrimitiveKind.STRING
+    )
 
-    override fun deserialize(decoder: Decoder) = JsonSchemaFormat.getFormat(decoder.decodeString())
+    override fun deserialize(decoder: Decoder): JsonSchemaFormat =
+        JsonSchemaFormat.getFormat(decoder.decodeString())
 
     override fun serialize(encoder: Encoder, value: JsonSchemaFormat) {
         encoder.encodeString(value.jsonValue)

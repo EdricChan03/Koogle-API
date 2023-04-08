@@ -25,20 +25,20 @@ import javax.inject.Inject
  * [Transformer] used to transform a [DirectoryItem] to its
  * [file name][String] representation.
  */
-typealias SchemaFileNameMapper = Transformer<String, DirectoryItem>
+public typealias SchemaFileNameMapper = Transformer<String, DirectoryItem>
 
 /**
  * Task to download all Google discovery documents from the specified root discovery document
  * and writes the results to disk.
  */
-abstract class DownloadDiscoveriesTask : DefaultTask() {
+public abstract class DownloadDiscoveriesTask : DefaultTask() {
     /** Path to the root discovery document file. */
     @get:InputFile
-    abstract val rootDiscoveryDocFile: RegularFileProperty
+    public abstract val rootDiscoveryDocFile: RegularFileProperty
 
     /** The directory to write the discovery documents to. */
     @get:OutputDirectory
-    abstract val outputDir: DirectoryProperty
+    public abstract val outputDir: DirectoryProperty
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
     // Transformer isn't Serializable, so we can't mark this as a Property
@@ -46,12 +46,12 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
     internal lateinit var mapper: SchemaFileNameMapper
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
-    fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
+    public fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
         this.mapper = mapper
     }
 
     @get:Inject
-    abstract val workerExecutor: WorkerExecutor
+    public abstract val workerExecutor: WorkerExecutor
 
     init {
         rootDiscoveryDocFile.convention(defaultRootDiscoveryDoc)
@@ -61,7 +61,7 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
 
     @OptIn(ExperimentalSerializationApi::class)
     @TaskAction
-    fun downloadDiscoveries() {
+    public fun downloadDiscoveries() {
         // Read from the root discovery doc
         val discoveries = Json.decodeFromStream<DirectoryList>(
             rootDiscoveryDocFile.get().asFile.inputStream()

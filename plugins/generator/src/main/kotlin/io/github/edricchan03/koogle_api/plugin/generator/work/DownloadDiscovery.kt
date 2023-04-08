@@ -11,7 +11,7 @@ import kotlinx.serialization.json.encodeToStream
 import kotlinx.serialization.json.jsonObject
 import org.gradle.workers.WorkAction
 
-abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
+public abstract class DownloadDiscovery : WorkAction<DownloadWorkParams> {
     private val json = Json { prettyPrint = true }
 
     @OptIn(ExperimentalSerializationApi::class)

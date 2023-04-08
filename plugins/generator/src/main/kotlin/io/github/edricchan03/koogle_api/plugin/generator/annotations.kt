@@ -11,4 +11,4 @@ package io.github.edricchan03.koogle_api.plugin.generator
         "guarantees in backwards-compatibility."
 )
 @MustBeDocumented
-annotation class InternalPluginApi
+public annotation class InternalPluginApi

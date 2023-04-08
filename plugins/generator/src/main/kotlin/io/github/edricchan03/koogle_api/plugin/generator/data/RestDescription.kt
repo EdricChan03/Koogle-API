@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * Data class representing a
  * [resource from Google's Discovery API](https://developers.google.com/discovery/v1/reference/apis#resource-representations).
  */
-data class RestDescription(
+public data class RestDescription(
     /** The kind for this response. */
     val kind: String = "discovery#restDescription",
     /** The ETag for this response. */
@@ -84,7 +84,7 @@ data class RestDescription(
 
 /** Data class used to represent the [RestDescription.icons] data structure. */
 @Serializable
-data class SchemaIcons(
+public data class SchemaIcons(
     /** The URL of the 16x16 icon. */
     val x16: String? = null,
     /** The URL of the 32x32 icon. */

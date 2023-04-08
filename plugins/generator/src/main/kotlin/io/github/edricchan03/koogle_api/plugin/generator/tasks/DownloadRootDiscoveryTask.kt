@@ -16,16 +16,16 @@ import org.gradle.api.tasks.TaskAction
 import java.net.URL
 
 /** Task that downloads and saves the root Google Discovery document to disk. */
-abstract class DownloadRootDiscoveryTask : DefaultTask() {
+public abstract class DownloadRootDiscoveryTask : DefaultTask() {
     /** URL to the root discovery document. */
     @get:Input
     @get:Optional
-    abstract val discoveryUrl: Property<URL>
+    public abstract val discoveryUrl: Property<URL>
 
     /** Output file where the discovery document will be saved. */
     @get:OutputFile
     @get:Optional
-    abstract val outputFile: RegularFileProperty
+    public abstract val outputFile: RegularFileProperty
 
     init {
         discoveryUrl.convention(URL(Defaults.defaultRootDiscoveryUrl))
@@ -33,7 +33,7 @@ abstract class DownloadRootDiscoveryTask : DefaultTask() {
     }
 
     @TaskAction
-    fun downloadRootDiscovery() {
+    public fun downloadRootDiscovery() {
         val url = discoveryUrl.get()
         val file = outputFile.get().asFile
         println("Downloading root Google discovery document from $url...")

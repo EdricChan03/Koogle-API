@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.registering
 
 /** Plugin that auto-generates the Google HTTP API mappings. */
-class KoogleApiGeneratorPlugin : Plugin<Project> {
+public class KoogleApiGeneratorPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         // Register extension
         val extension = project.extensions.create<KoogleApiGeneratorPluginExtension>("koogleApiGenerator")

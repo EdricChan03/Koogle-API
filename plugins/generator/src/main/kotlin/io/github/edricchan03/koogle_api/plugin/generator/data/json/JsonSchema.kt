@@ -13,7 +13,7 @@ import kotlinx.serialization.json.*
  * [`type` property](https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-03#section-5.1).
  */
 @Serializable
-enum class JsonSchemaType {
+public enum class JsonSchemaType {
     /** Indicates that the value **must** be a string. */
     @SerialName("string")
     String,
@@ -59,14 +59,14 @@ enum class JsonSchemaType {
  * @property jsonValue The underlying JSON string representation.
  */
 @Serializable(with = JsonSchemaFormatSerializer::class)
-sealed class JsonSchemaFormat(open val jsonValue: String) {
+public sealed class JsonSchemaFormat(public open val jsonValue: String) {
     /**
      * This _should_ be a date in ISO 8601 format of `YYYY-MM-DDThh:mm:ssZ`
      * in UTC time.
      *
      * This is the recommended form of date/timestamp.
      */
-    object DateTime : JsonSchemaFormat("date-time")
+    public object DateTime : JsonSchemaFormat("date-time")
 
     /**
      * This _should_ be a date in the format of `YYYY-MM-DD`.
@@ -74,7 +74,7 @@ sealed class JsonSchemaFormat(open val jsonValue: String) {
      * It is recommended that you use the [`date-time`][DateTime] format
      * instead of `date` unless you need to transfer only the date part.
      */
-    object Date : JsonSchemaFormat("date")
+    public object Date : JsonSchemaFormat("date")
 
     /**
      * This _should_ be a time in the format of `hh:mm:ss`.
@@ -82,7 +82,7 @@ sealed class JsonSchemaFormat(open val jsonValue: String) {
      * It is recommended that you use the [`date-time`][DateTime] format
      * instead of `time` unless you need to transfer only the time part.
      */
-    object Time : JsonSchemaFormat("time")
+    public object Time : JsonSchemaFormat("time")
 
     /**
      * This _should_ be the difference, measured in milliseconds, between the
@@ -90,51 +90,51 @@ sealed class JsonSchemaFormat(open val jsonValue: String) {
      *
      * The value _should_ be a number (integer or float).
      */
-    object UtcMillisec : JsonSchemaFormat("utc-millisec")
+    public object UtcMillisec : JsonSchemaFormat("utc-millisec")
 
     /**
      * A regular expression, following the regular expression specification from
      * ECMA 262/Perl 5.
      */
-    object Regex : JsonSchemaFormat("regex")
+    public object Regex : JsonSchemaFormat("regex")
 
     /** This is a CSS color (like "#FF0000" or "red"), based on CSS 2.1. */
-    object Color : JsonSchemaFormat("color")
+    public object Color : JsonSchemaFormat("color")
 
     /**
      * This is a CSS style definition (like `color: red; background-color:#FFF"),
      * based on CSS 2.1.
      */
-    object Style : JsonSchemaFormat("style")
+    public object Style : JsonSchemaFormat("style")
 
     /**
      * This _should_ be a phone number (format _may_ follow E.123).
      */
-    object Phone : JsonSchemaFormat("phone")
+    public object Phone : JsonSchemaFormat("phone")
 
     /** This value _should_ be a URI. */
-    object Uri : JsonSchemaFormat("uri")
+    public object Uri : JsonSchemaFormat("uri")
 
     /** This _should_ be an email address. */
-    object Email : JsonSchemaFormat("email")
+    public object Email : JsonSchemaFormat("email")
 
     /** This _should_ be an ip version 4 address. */
-    object IpAddress : JsonSchemaFormat("ip-address")
+    public object IpAddress : JsonSchemaFormat("ip-address")
 
     /** This _should_ be an ip version 6 address. */
-    object IpV6 : JsonSchemaFormat("ipv6")
+    public object IpV6 : JsonSchemaFormat("ipv6")
 
     /** This _should_ be a host-name. */
-    object HostName : JsonSchemaFormat("host-name")
+    public object HostName : JsonSchemaFormat("host-name")
 
     /**
      * A custom format which _may_ be represented as an URI, and this URI _may_
      * reference a schema of that format.
      */
-    data class Custom(override val jsonValue: String) : JsonSchemaFormat(jsonValue)
+    public data class Custom(override val jsonValue: String) : JsonSchemaFormat(jsonValue)
 
-    companion object {
-        fun getFormat(value: String) = when (value) {
+    public companion object {
+        public fun getFormat(value: String): JsonSchemaFormat = when (value) {
             "date-time" -> DateTime
             "date" -> Date
             "time" -> Time
@@ -162,7 +162,7 @@ sealed class JsonSchemaFormat(open val jsonValue: String) {
  * all properties are marked as optional.
  */
 @Serializable
-data class JsonSchema(
+public data class JsonSchema(
     /**
      * This attribute defines what the primitive type or the schema of the
      * instance **must** be in order to validate.
@@ -501,9 +501,9 @@ data class JsonSchema(
      * which is normally reserved for template strings and the like.)
      */
     @SerialName("\$schema") val metaSchema: String? = null
-    ) {
+) {
     /** Retrieves the [additional properties][additionalProperties] as a boolean. */
-    val additionalPropertiesAsBoolean = additionalProperties?.jsonPrimitive?.booleanOrNull
+    val additionalPropertiesAsBoolean: Boolean? = additionalProperties?.jsonPrimitive?.booleanOrNull
 
     /**
      * Retrieves the [additional properties][additionalProperties] as an object.
@@ -512,12 +512,12 @@ data class JsonSchema(
      * @param json The [Json] instance to use.
      * @return The additional properties, converted to a [JsonSchema].
      */
-    fun getAdditionalPropertiesAsSchema(json: Json) = additionalProperties?.let {
+    public fun getAdditionalPropertiesAsSchema(json: Json): Map<String, JsonSchema>? = additionalProperties?.let {
         json.decodeFromJsonElement<Map<String, JsonSchema>?>(it)
     }
 
     /** Retrieves the [additional items][additionalItems] as a boolean. */
-    val additionalItemsAsBoolean = additionalItems?.jsonPrimitive?.booleanOrNull
+    val additionalItemsAsBoolean: Boolean? = additionalItems?.jsonPrimitive?.booleanOrNull
 
     /**
      * Retrieves the [additional items][additionalItems] as an object.
@@ -526,15 +526,15 @@ data class JsonSchema(
      * @param json The [Json] instance to use.
      * @return The additional items, converted to a [JsonSchema].
      */
-    fun getAdditionalItemsAsSchema(json: Json) = additionalItems?.let {
+    public fun getAdditionalItemsAsSchema(json: Json): Map<String, JsonSchema>? = additionalItems?.let {
         json.decodeFromJsonElement<Map<String, JsonSchema>?>(it)
     }
 
     /** Retrieves the [dependencies] as a string. */
-    val dependenciesAsString = dependencies?.jsonPrimitive?.contentOrNull
+    val dependenciesAsString: String? = dependencies?.jsonPrimitive?.contentOrNull
 
     /** Retrieves the [dependencies] as a JSON array. */
-    val dependenciesAsJsonArray = dependencies?.jsonArray
+    private val dependenciesAsJsonArray: JsonArray? = dependencies?.jsonArray
 
     /**
      * Retrieves the dependencies as a list of strings.
@@ -542,7 +542,7 @@ data class JsonSchema(
      * @param json The [Json] instance to use.
      * @return The dependencies, converted to a list of strings.
      */
-    fun getDependenciesAsList(json: Json) = dependenciesAsJsonArray?.let {
+    public fun getDependenciesAsList(json: Json): List<String>? = dependenciesAsJsonArray?.let {
         json.decodeFromJsonElement<List<String>?>(it)
     }
 
@@ -552,7 +552,7 @@ data class JsonSchema(
      * @param json The [Json] instance to use.
      * @return The dependencies, converted to a [JsonSchema].
      */
-    fun getDependenciesAsSchema(json: Json) = dependencies?.let {
+    public fun getDependenciesAsSchema(json: Json): JsonSchema? = dependencies?.let {
         json.decodeFromJsonElement<JsonSchema?>(it)
     }
 }

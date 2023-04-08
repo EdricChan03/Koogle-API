@@ -7,11 +7,13 @@ import kotlinx.serialization.Serializable
 // HTTP API-related data classes
 
 @Serializable
-enum class HttpMethod {
+public enum class HttpMethod {
     @SerialName("GET")
     Get,
+
     @SerialName("PATCH")
     Patch,
+
     @SerialName("PUT")
     Put
 }
@@ -19,44 +21,51 @@ enum class HttpMethod {
 
 @Serializable
 // See https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-03#section-5.1
-enum class SchemaType {
+public enum class SchemaType {
     @SerialName("string")
     String,
+
     @SerialName("number")
     Number,
+
     @SerialName("integer")
     Integer,
+
     @SerialName("boolean")
     Boolean,
+
     @SerialName("object")
     Object,
+
     @SerialName("array")
     Array,
+
     @SerialName("null")
     Null,
+
     @SerialName("any")
     Any
 }
 
-typealias RestResources = Map<String, RestResource>
+public typealias RestResources = Map<String, RestResource>
 
 /** Data class to represent metadata for an individual schema resource. */
 @Serializable
-data class RestResource(
+public data class RestResource(
     /** Methods on this resource. */
     val methods: RestMethods? = null,
     val resources: RestResources? = null
 )
 
-typealias RestItems = Map<String, GoogleJsonSchema>
+public typealias RestItems = Map<String, GoogleJsonSchema>
 
-typealias RestParameters = Map<String, GoogleJsonSchema>
+public typealias RestParameters = Map<String, GoogleJsonSchema>
 
-typealias RestMethods = Map<String, RestMethod>
+public typealias RestMethods = Map<String, RestMethod>
 
-/** Data class to represent an individual method for [SchemaRes.methods]. */
+/** Data class to represent an individual method for [RestDescription.methods]. */
 @Serializable
-data class RestMethod(
+public data class RestMethod(
     /**
      * A unique ID for this method.
      * This property can be used to match methods between different versions of Discovery.
@@ -108,7 +117,7 @@ data class RestMethod(
 ) {
     /** Data class to represent request parameters for [RestMethod.request]. */
     @Serializable
-    data class Request(
+    public data class Request(
         /** Schema ID for the request schema. */
         @SerialName("\$ref")
         val metaRef: String? = null,
@@ -118,14 +127,14 @@ data class RestMethod(
 
     /** Data class to represent response parameters for [RestMethod.response]. */
     @Serializable
-    data class Response(
+    public data class Response(
         /** Schema ID for the response schema. */
         @SerialName("\$ref") val metaRef: String? = null
     )
 
     /** Data class to represent media upload parameters for [RestMethod.mediaUpload]. */
     @Serializable
-    data class MediaUpload(
+    public data class MediaUpload(
         /** MIME Media Ranges for acceptable media uploads to this method. */
         val accept: List<String>? = emptyList(),
         /** Maximum size of a media upload, such as "1MB", "2GB" or "3TB". */
@@ -135,7 +144,7 @@ data class RestMethod(
     ) {
         /** Data class to represent media upload protocols for [MediaUpload.protocols]. */
         @Serializable
-        data class Protocols(
+        public data class Protocols(
             /** Supports uploading as a single HTTP request. */
             val simple: Protocol? = null,
             /** Supports the Resumable Media Upload protocol. */
@@ -143,12 +152,12 @@ data class RestMethod(
         ) {
             /** Data class to represent an individual media upload protocol for [Protocols]. */
             @Serializable
-            data class Protocol(
+            public data class Protocol(
                 /** True if this endpoint supports upload multipart media. */
                 val multipart: Boolean? = true,
                 /**
                  * The URI path to be used for upload.
-                 * Should be used in conjunction with the [rootUrl][SchemaRes.rootUrl] property at the API-level.
+                 * Should be used in conjunction with the [rootUrl][RestDescription.rootUrl] property at the API-level.
                  */
                 val path: String? = null
             )

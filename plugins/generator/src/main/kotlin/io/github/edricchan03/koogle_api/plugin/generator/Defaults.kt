@@ -2,17 +2,21 @@ package io.github.edricchan03.koogle_api.plugin.generator
 
 import io.github.edricchan03.koogle_api.plugin.generator.tasks.SchemaFileNameMapper
 import org.gradle.api.Task
+import org.gradle.api.file.Directory
+import org.gradle.api.file.RegularFile
+import org.gradle.api.provider.Provider
 
-object Defaults {
+public object Defaults {
     /** @see KoogleApiGeneratorPluginExtension.discoveryDocsOutputDir */
-    val Task.defaultOutputDiscoveryDocsDir get() = project.layout.buildDirectory.dir("koogle-api-disc-docs")
+    public val Task.defaultOutputDiscoveryDocsDir: Provider<Directory> get() = project.layout.buildDirectory.dir("koogle-api-disc-docs")
 
     /** @see KoogleApiGeneratorPluginExtension.discoveryUrl */
-    const val defaultRootDiscoveryUrl = "https://www.googleapis.com/discovery/v1/apis"
+    public const val defaultRootDiscoveryUrl: String = "https://www.googleapis.com/discovery/v1/apis"
 
     /** @see KoogleApiGeneratorPluginExtension.rootDiscoveryDocOutputFile */
-    val Task.defaultRootDiscoveryDoc get() = defaultOutputDiscoveryDocsDir.map { it.file("index.json") }
+    public val Task.defaultRootDiscoveryDoc: Provider<RegularFile> get() = defaultOutputDiscoveryDocsDir.map { it.file("index.json") }
 
     /** @see KoogleApiGeneratorPluginExtension.outputFileNameMapper */
-    val Task.defaultOutputFileNameMapper get() = SchemaFileNameMapper { "${it.id.replace(":", "-")}.json" }
+    public val Task.defaultOutputFileNameMapper: SchemaFileNameMapper
+        get() = SchemaFileNameMapper { "${it.id.replace(":", "-")}.json" }
 }

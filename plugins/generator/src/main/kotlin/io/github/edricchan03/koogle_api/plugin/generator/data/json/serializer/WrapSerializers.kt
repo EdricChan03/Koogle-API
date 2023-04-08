@@ -16,9 +16,9 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  * (Implementation based from the
  * [JSON transforming docs](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md#array-wrapping)
  */
-open class ListWrapSerializer<T : Any>(elementSerializer: KSerializer<T>) :
+public open class ListWrapSerializer<T : Any>(elementSerializer: KSerializer<T>) :
     JsonTransformingSerializer<List<T>>(ListSerializer(elementSerializer)) {
-    override fun transformDeserialize(element: JsonElement) =
+    override fun transformDeserialize(element: JsonElement): JsonArray =
         if (element !is JsonArray) JsonArray(listOf(element)) else element
 }
 
@@ -28,9 +28,9 @@ open class ListWrapSerializer<T : Any>(elementSerializer: KSerializer<T>) :
  * (Implementation based from the
  * [JSON transforming docs](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md#array-wrapping)
  */
-open class SetWrapSerializer<T : Any>(elementSerializer: KSerializer<T>) :
+public open class SetWrapSerializer<T : Any>(elementSerializer: KSerializer<T>) :
     JsonTransformingSerializer<Set<T>>(SetSerializer(elementSerializer)) {
-    override fun transformDeserialize(element: JsonElement) =
+    override fun transformDeserialize(element: JsonElement): JsonArray =
         if (element !is JsonArray) JsonArray(listOf(element)) else element
 }
 
