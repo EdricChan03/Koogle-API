@@ -6,12 +6,21 @@ import org.gradle.api.provider.Provider
 import org.gradle.workers.WorkAction
 import org.gradle.workers.WorkParameters
 import org.gradle.workers.WorkQueue
+import kotlin.reflect.KMutableProperty0
 
 /**
  * Sets the receiver property only if the [other] provider [has a value][Provider.isPresent].
  */
-fun <T> Property<T>.setIfPresent(other: Provider<out T?>) {
+internal fun <T> Property<T>.setIfPresent(other: Provider<out T?>) {
     if (other.isPresent) set(other)
+}
+
+/**
+ * Sets the receiver mutable Kotlin property only if the [other] provider
+ * [has a value][Provider.isPresent].
+ */
+internal fun <T> KMutableProperty0<T>.setIfPresent(other: Provider<out T?>) {
+    if (other.isPresent) other.get()?.let { set(it) }
 }
 
 /**

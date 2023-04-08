@@ -13,9 +13,8 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.Transformer
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
-import org.gradle.api.provider.Property
-import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 import org.gradle.workers.WorkerExecutor
@@ -41,11 +40,14 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
     abstract val outputDir: DirectoryProperty
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
-    @get:Input
-    abstract val outputFileNameMapper: Property<SchemaFileNameMapper>
+    // Transformer isn't Serializable, so we can't mark this as a Property
+    @get:Internal
+    internal lateinit var mapper: SchemaFileNameMapper
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
-    fun outputFileNameMapper(mapper: SchemaFileNameMapper) = outputFileNameMapper.set(mapper)
+    fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
+        this.mapper = mapper
+    }
 
     @get:Inject
     abstract val workerExecutor: WorkerExecutor
@@ -53,7 +55,7 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
     init {
         rootDiscoveryDocFile.convention(defaultRootDiscoveryDoc)
         outputDir.convention(defaultOutputDiscoveryDocsDir)
-        outputFileNameMapper.convention(defaultOutputFileNameMapper)
+        if (!::mapper.isInitialized) mapper = defaultOutputFileNameMapper
     }
 
     @OptIn(ExperimentalSerializationApi::class)
@@ -70,7 +72,7 @@ abstract class DownloadDiscoveriesTask : DefaultTask() {
                 schemaUrl.set(it.discoveryRestUrl)
                 schemaId.set(it.id)
                 outputFile.set(
-                    outputDir.get().asFile.resolve(outputFileNameMapper.get().transform(it))
+                    outputDir.get().asFile.resolve(mapper.transform(it))
                 )
             }
         }

@@ -65,7 +65,7 @@ class KoogleApiGeneratorPlugin : Plugin<Project> {
                 group = "koogleApi"
                 rootDiscoveryDocFile.setIfPresent(extension.rootDiscoveryDocOutputFile)
                 outputDir.setIfPresent(extension.discoveryDocsOutputDir)
-                outputFileNameMapper.setIfPresent(extension.outputFileNameMapper)
+                ::mapper.setIfPresent(extension.outputFileNameMapper)
             }
         }
     }
