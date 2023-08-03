@@ -13,6 +13,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 
 # For precompiled script plugins
 dokkatoo-plugin = { module = "dev.adamko.dokkatoo:dokkatoo-plugin", version.ref = "dokkatoo" }
+kotlin-mpp-plugin = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
 
 [plugins]
 dokkatoo-html = { id = "dev.adamko.dokkatoo-html", version.ref = "dokkatoo" }

@@ -12,4 +12,5 @@ dependencies {
 
     // For precompiled scripts
     implementation(libs.dokkatoo.plugin)
+    implementation(libs.kotlin.mpp.plugin)
 }
