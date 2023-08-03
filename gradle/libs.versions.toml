@@ -1,5 +1,5 @@
 [versions]
-dokka = "1.8.10"
+dokkatoo = "1.6.0"
 kotlin = "1.9.0"
 kotlinx-serialization = "1.5.1"
 ktor = "2.3.3"
@@ -11,7 +11,10 @@ ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotia
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
+# For precompiled script plugins
+dokkatoo-plugin = { module = "dev.adamko.dokkatoo:dokkatoo-plugin", version.ref = "dokkatoo" }
+
 [plugins]
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+dokkatoo-html = { id = "dev.adamko.dokkatoo-html", version.ref = "dokkatoo" }
 kotlin-mpp = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

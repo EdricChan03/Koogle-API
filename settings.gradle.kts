@@ -7,8 +7,7 @@ pluginManagement {
         google()
         mavenCentral()
     }
-
-    includeBuild("plugins/generator")
+//    includeBuild("plugins/generator")
 }
 
 dependencyResolutionManagement {
@@ -18,6 +17,9 @@ dependencyResolutionManagement {
     }
 }
 
+includeBuild("plugins/generator") {
+    name = "koogle-api-generator-plugin"
+}
 include(
     ":koogle-api-common",
 )

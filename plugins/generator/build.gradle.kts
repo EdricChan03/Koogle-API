@@ -1,8 +1,14 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     kotlin("plugin.serialization") version embeddedKotlinVersion
+    alias(libs.plugins.dokkatoo.html)
 }
+
+group = "io.github.edricchan03.koogle-api"
+version = "0.0.0-SNAPSHOT"
 
 gradlePlugin {
     plugins {
@@ -21,4 +27,40 @@ dependencies {
     implementation(libs.ktor.client.contentNegotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.json)
+}
+
+dokkatoo {
+    modulePath = "plugins/generator"
+
+    dokkatooSourceSets.configureEach {
+        includes.from("Module.md")
+
+        // Link to source
+        sourceLink {
+            localDirectory = file("src/main/kotlin")
+            remoteUrl("https://github.com/EdricChan03/Koogle-API/tree/main/plugins/generator/src/main/kotlin")
+        }
+
+        externalDocumentationLinks {
+            // KotlinX docs
+            val kotlinxCoroutines by registering {
+                url("https://kotlinlang.org/api/kotlinx.coroutines/")
+            }
+            val kotlinxSerialization by registering {
+                url("https://kotlinlang.org/api/kotlinx.serialization/")
+            }
+
+            // Ktor API docs
+            val ktor by registering {
+                url("https://api.ktor.io/ktor-client/")
+                packageListUrl("https://api.ktor.io/package-list")
+            }
+
+            // Gradle docs
+            val gradle by registering {
+                url("https://docs.gradle.org/${gradle.gradleVersion}/kotlin-dsl/")
+                packageListUrl("https://docs.gradle.org/${gradle.gradleVersion}/kotlin-dsl/gradle/package-list")
+            }
+        }
+    }
 }

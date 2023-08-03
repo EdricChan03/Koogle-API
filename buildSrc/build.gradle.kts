@@ -9,4 +9,7 @@ dependencies {
     implementation(libs.ktor.client.contentNegotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.json)
+
+    // For precompiled scripts
+    implementation(libs.dokkatoo.plugin)
 }
