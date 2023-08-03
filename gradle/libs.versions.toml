@@ -1,8 +1,8 @@
 [versions]
 dokka = "1.8.10"
-kotlin = "1.8.20"
-kotlinx-serialization = "1.5.0"
-ktor = "2.2.4"
+kotlin = "1.9.0"
+kotlinx-serialization = "1.5.1"
+ktor = "2.3.3"
 
 [libraries]
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
