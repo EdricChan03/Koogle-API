@@ -4,9 +4,6 @@
 
 package io.github.edricchan03.koogle_api
 
-//import dev.adamko.dokkatoo.dokka.parameters.KotlinPlatform
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     kotlin("multiplatform")
     dev.adamko.`dokkatoo-html`
@@ -18,16 +15,10 @@ version = "0.0.0-SNAPSHOT"
 kotlin {
     explicitApi()
 
-    jvmToolchain(8)
+    jvmToolchain(11)
 
     jvm {
-        compilations.all {
-            compilerOptions.configure {
-                jvmTarget = JvmTarget.JVM_1_8
-            }
-        }
-        withJava()
-        testRuns["test"].executionTask.configure {
+        testRuns["test"].executionTask {
             useJUnitPlatform()
         }
     }
