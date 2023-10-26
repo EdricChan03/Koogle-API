@@ -17,6 +17,10 @@ dependencyResolutionManagement {
     }
 }
 
+// Enables type-safe project dependencies - see
+// https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 includeBuild("plugins/generator") {
     name = "koogle-api-generator-plugin"
 }
