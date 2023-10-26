@@ -1,14 +1,9 @@
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+@file:Suppress("UnstableApiUsage")
 
 plugins {
-    kotlin("multiplatform")
+    io.github.edricchan03.koogle_api.module
     kotlin("plugin.serialization")
-    id("org.jetbrains.dokka")
 }
-
-group = "io.github.edricchan03"
-version = "0.0.0-SNAPSHOT"
 
 kotlin {
     explicitApiWarning()
@@ -51,11 +46,3 @@ kotlin {
     }
 }
 
-tasks.withType<DokkaTaskPartial>().configureEach {
-    dokkaSourceSets.configureEach {
-        includes.from("Module.md")
-
-        // Ktor API docs
-        externalDocumentationLink("https://api.ktor.io/")
-    }
-}
