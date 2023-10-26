@@ -6,26 +6,8 @@ plugins {
 }
 
 kotlin {
-    explicitApiWarning()
-    jvm {
-        compilations.all {
-            compilerOptions.configure {
-                jvmTarget.set(JvmTarget.JVM_1_8)
-            }
-        }
-        withJava()
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform()
-        }
-    }
-    js(BOTH) {
-        browser {
-            commonWebpackConfig {
-                cssSupport {
-                    enabled.set(true)
-                }
-            }
-        }
+    js(IR) {
+        browser()
     }
     sourceSets {
         val commonMain by getting {
