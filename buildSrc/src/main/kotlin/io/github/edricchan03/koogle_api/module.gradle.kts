@@ -26,7 +26,9 @@ kotlin {
 
 dokkatoo {
     dokkatooSourceSets.configureEach {
-        includes.from("Module.md")
+        val moduleDoc = file("Module.md")
+        if (moduleDoc.exists()) includes.from(moduleDoc)
+        else logger.warn("The expected Module.md file at $moduleDoc doesn't exist!")
 
         samples.from("src/samples/kotlin")
 
