@@ -33,7 +33,7 @@ dokkatoo {
     modulePath = "plugins/generator"
 
     dokkatooSourceSets.configureEach {
-        //includes.from("Module.md")
+        includes.from("Module.md")
 
         // Link to source
         sourceLink {
