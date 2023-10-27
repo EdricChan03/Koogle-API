@@ -32,11 +32,19 @@ public typealias SchemaFileNameMapper = Transformer<String, DirectoryItem>
  * and writes the results to disk.
  */
 public abstract class DownloadDiscoveriesTask : DefaultTask() {
-    /** Path to the root discovery document file. */
+    /**
+     * Path to the root discovery document file.
+     *
+     * Defaults to [defaultRootDiscoveryDoc] if not specified.
+     */
     @get:InputFile
     public abstract val rootDiscoveryDocFile: RegularFileProperty
 
-    /** The directory to write the discovery documents to. */
+    /**
+     * The directory to write the discovery documents to.
+     *
+     * Defaults to [defaultOutputDiscoveryDocsDir] if not specified.
+     */
     @get:OutputDirectory
     public abstract val outputDir: DirectoryProperty
 
@@ -45,7 +53,12 @@ public abstract class DownloadDiscoveriesTask : DefaultTask() {
     @get:Internal
     internal lateinit var mapper: SchemaFileNameMapper
 
-    /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
+    /**
+     * Mapping function used to generate the output file name based from the
+     * specified [DirectoryItem].
+     *
+     * Defaults to [defaultOutputFileNameMapper] if not specified.
+     */
     public fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
         this.mapper = mapper
     }
@@ -59,6 +72,7 @@ public abstract class DownloadDiscoveriesTask : DefaultTask() {
         if (!::mapper.isInitialized) mapper = defaultOutputFileNameMapper
     }
 
+    /** The task action to execute. */
     @OptIn(ExperimentalSerializationApi::class)
     @TaskAction
     public fun downloadDiscoveries() {
