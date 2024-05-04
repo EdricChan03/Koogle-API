@@ -19,7 +19,7 @@ public class KoogleApiGeneratorPlugin : Plugin<Project> {
         project.tasks.apply {
             val downloadRootDiscovery by registering(DownloadRootDiscoveryTask::class) {
                 description = "Downloads the root Google API discovery document and saves it to disk"
-                group = "koogleApi"
+                group = PLUGIN_TASK_GROUP
                 discoveryUrl.setIfPresent(extension.discoveryUrl)
                 outputFile.setIfPresent(extension.rootDiscoveryDocOutputFile)
             }
@@ -28,11 +28,14 @@ public class KoogleApiGeneratorPlugin : Plugin<Project> {
                 dependsOn(downloadRootDiscovery)
                 description = "Downloads all Google API discovery documents from the root document " +
                     "and saves them to disk"
-                group = "koogleApi"
+                group = PLUGIN_TASK_GROUP
                 rootDiscoveryDocFile.setIfPresent(extension.rootDiscoveryDocOutputFile)
                 outputDir.setIfPresent(extension.discoveryDocsOutputDir)
                 ::mapper.setIfPresent(extension.outputFileNameMapper)
             }
         }
+
+    public companion object {
+        public const val PLUGIN_TASK_GROUP: String = "koogleApi"
     }
 }
