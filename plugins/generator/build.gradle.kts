@@ -32,6 +32,11 @@ dependencies {
 dokka {
     modulePath = "plugins/generator"
 
+    pluginsConfiguration.html {
+        separateInheritedMembers = true
+        homepageLink = "https://github.com/EdricChan03/Koogle-API"
+    }
+
     dokkaSourceSets.configureEach {
         includes.from("Module.md")
 

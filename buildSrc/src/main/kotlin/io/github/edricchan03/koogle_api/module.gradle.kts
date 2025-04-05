@@ -29,6 +29,11 @@ dokka {
     val moduleDocExists = moduleDoc.exists()
     if (!moduleDocExists) logger.warn("The expected Module.md file at $moduleDoc doesn't exist!")
 
+    pluginsConfiguration.html {
+        separateInheritedMembers = true
+        homepageLink = "https://github.com/EdricChan03/Koogle-API"
+    }
+
     dokkaSourceSets.configureEach {
 
         if (moduleDocExists) includes.from(moduleDoc)
