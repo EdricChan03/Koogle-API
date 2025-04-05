@@ -6,7 +6,7 @@ package io.github.edricchan03.koogle_api
 
 plugins {
     kotlin("multiplatform")
-    dev.adamko.`dokkatoo-html`
+    org.jetbrains.dokka
 }
 
 group = "io.github.edricchan03.koogle-api"
@@ -24,12 +24,12 @@ kotlin {
     }
 }
 
-dokkatoo {
+dokka {
     val moduleDoc = file("Module.md")
     val moduleDocExists = moduleDoc.exists()
     if (!moduleDocExists) logger.warn("The expected Module.md file at $moduleDoc doesn't exist!")
 
-    dokkatooSourceSets.configureEach {
+    dokkaSourceSets.configureEach {
 
         if (moduleDocExists) includes.from(moduleDoc)
 

@@ -11,6 +11,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // For precompiled scripts
-    implementation(libs.dokkatoo.plugin)
+    implementation(libs.dokka.plugin)
     implementation(libs.kotlin.mpp.plugin)
 }

@@ -4,7 +4,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     kotlin("plugin.serialization") version embeddedKotlinVersion
-    alias(libs.plugins.dokkatoo.html)
+    alias(libs.plugins.dokka)
 }
 
 group = "io.github.edricchan03.koogle-api"
@@ -29,10 +29,10 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 }
 
-dokkatoo {
+dokka {
     modulePath = "plugins/generator"
 
-    dokkatooSourceSets.configureEach {
+    dokkaSourceSets.configureEach {
         includes.from("Module.md")
 
         // Link to source
