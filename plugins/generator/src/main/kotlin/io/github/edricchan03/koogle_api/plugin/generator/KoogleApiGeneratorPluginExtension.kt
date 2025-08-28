@@ -20,22 +20,34 @@ public abstract class KoogleApiGeneratorPluginExtension {
 
     /**
      * The file to output to.
+     *
      * If this value is set to `null`, it will be output to the project's build directory
      * with the file name "koogle-api-discovery.json".
+     * @since 0.1.0
      */
     public abstract val rootDiscoveryDocOutputFile: RegularFileProperty
 
     /**
      * The directory to save all discovery documents to.
-     * If this value is set to `null`, it will by default be saved to the project's build directory
-     * in a sub-directory "koogle-api-disc-docs".
+     *
+     * If this value is set to `null`, it will by default be saved to the
+     * project's build directory in a sub-directory "koogle-api-disc-docs".
+     * @since 0.1.0
      */
     public abstract val discoveryDocsOutputDir: DirectoryProperty
 
-    /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
+    /**
+     * Mapping function used to generate the output file name based from
+     * the specified [DirectoryItem].
+     * @since 0.1.0
+     */
     public abstract val outputFileNameMapper: Property<SchemaFileNameMapper>
 
-    /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
+    /**
+     * Mapping function used to generate the output file name
+     * based from the specified [DirectoryItem].
+     * @since 0.1.0
+     */
     public fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
         outputFileNameMapper.set(mapper)
     }
