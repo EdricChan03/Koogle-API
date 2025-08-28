@@ -11,7 +11,7 @@ import kotlin.reflect.KMutableProperty0
 /**
  * Sets the receiver property only if the [other] provider [has a value][Provider.isPresent].
  */
-internal fun <T> Property<T>.setIfPresent(other: Provider<out T?>) {
+internal fun <T : Any> Property<T>.setIfPresent(other: Provider<out T>) {
     if (other.isPresent) set(other)
 }
 
@@ -19,8 +19,8 @@ internal fun <T> Property<T>.setIfPresent(other: Provider<out T?>) {
  * Sets the receiver mutable Kotlin property only if the [other] provider
  * [has a value][Provider.isPresent].
  */
-internal fun <T> KMutableProperty0<T>.setIfPresent(other: Provider<out T?>) {
-    if (other.isPresent) other.get()?.let { set(it) }
+internal fun <T : Any> KMutableProperty0<T>.setIfPresent(other: Provider<out T>) {
+    if (other.isPresent) set(other.get())
 }
 
 /**

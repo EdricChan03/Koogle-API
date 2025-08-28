@@ -33,7 +33,7 @@ public abstract class KoogleApiGeneratorPluginExtension {
     public abstract val discoveryDocsOutputDir: DirectoryProperty
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
-    public abstract val outputFileNameMapper: Property<SchemaFileNameMapper?>
+    public abstract val outputFileNameMapper: Property<SchemaFileNameMapper>
 
     /** Mapping function used to generate the output file name based from the specified [DirectoryItem]. */
     public fun outputFileNameMapper(mapper: SchemaFileNameMapper) {
